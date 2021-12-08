@@ -1,28 +1,25 @@
-import { Schema, model } from "mongoose";
-const UserSchema: Schema = new Schema(
-  {
-    name: {
-      type: String,
-      required: true,
-    },
-    email: {
-      type: String,
-      required: true,
-      unique: true,
-    },
-    password: {
-      type: String,
-      required: true,
-    },
-    avatar: {
-      type: String,
-      required: true,
-      default:
-            "https://iptc.org/wp-content/uploads/2018/05/avatar-anonymous-300x300.png",
-    },
-  },
-  {
-    timestamps: true,
-  }
-);
-export default model("User", UserSchema);
+// this is the expale typegoose model
+
+import { getModelForClass, ModelOptions, prop } from "@typegoose/typegoose";
+import { Field } from "type-graphql";
+
+@ModelOptions({ schemaOptions: { timestamps: true } })
+export class User {
+  @Field()
+  @prop()
+  _id: string;
+  @Field()
+  @prop()
+  username: string;
+  @Field()
+  @prop()
+  password: string;
+  @Field()
+  @prop()
+  email: string;
+}
+
+// this is the export typegoose model to crete the graphql schema
+export default User;
+// this is the export typegoose model to crete the model
+export const UserModel = getModelForClass(User);
