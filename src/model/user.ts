@@ -1,4 +1,4 @@
-// this is the expale typegoose model
+// this is the example typegoose model
 
 import { getModelForClass, ModelOptions, prop } from "@typegoose/typegoose";
 import { Field } from "type-graphql";
@@ -6,7 +6,6 @@ import { Field } from "type-graphql";
 @ModelOptions({ schemaOptions: { timestamps: true } })
 export class User {
   @Field()
-  @prop()
   _id: string;
   @Field()
   @prop()
@@ -17,6 +16,12 @@ export class User {
   @Field()
   @prop()
   email: string;
+  @Field()
+  @prop()
+  createdAt: Date;
+  @Field()
+  @prop()
+  updatedAt: Date;
 }
 
 // this is the export typegoose model to crete the graphql schema
