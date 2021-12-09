@@ -4,6 +4,7 @@ import { getModelForClass, ModelOptions, prop } from "@typegoose/typegoose";
 import { Field } from "type-graphql";
 
 @ModelOptions({ schemaOptions: { timestamps: true } })
+@ObjectType()
 export class User {
   @Field()
   _id: string;
